@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:restaurant_management/screens/Home.dart';
 import 'SignUpForm.dart';
 
 class SignIn extends StatefulWidget {
@@ -15,6 +16,7 @@ class _SignInState extends State<SignIn> {
   final FirebaseAuth auth = FirebaseAuth.instance;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
   String errorMessage = '';
 
   Future<void> _login() async {
@@ -24,31 +26,26 @@ class _SignInState extends State<SignIn> {
         password: passwordController.text,
       );
       if (mounted) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => SignUpForm()),
-        );
-      }
-    } on FirebaseAuthException catch (e) {
-      setState(() {
-        errorMessage = e.message!;
-      });
-    }
-  }
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: const Text(
+            "Login sucessfully",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          duration: const Duration(seconds: 3),
+          backgroundColor: Colors.green,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          behavior: SnackBarBehavior.floating,
+        ));
 
-  Future<void> _register() async {
-    try {
-      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
-      if (mounted) {
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => SignUpForm()),
+          MaterialPageRoute(builder: (context) => Home(userCredential.user)),
         );
       }
     } on FirebaseAuthException catch (e) {
+      print(e.message);
       setState(() {
         errorMessage = e.message!;
       });
@@ -91,6 +88,8 @@ class _SignInState extends State<SignIn> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15.0),
                 child: TextFormField(
+                  controller: passwordController,
+                  keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.done,
                   obscureText: true,
                   cursorColor: const Color(0xFF6F35A5),
@@ -104,6 +103,12 @@ class _SignInState extends State<SignIn> {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'required';
+                    }
+                    return null;
+                  },
                 ),
               ),
               const SizedBox(height: 4),

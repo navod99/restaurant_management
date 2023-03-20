@@ -64,7 +64,7 @@ class _LoginState extends State<Login> {
                       backgroundColor: Color(0xFF6F35A5),
                       onPressed: () async {
                         final navigator = Navigator.of(context);
-                        navigator.pushReplacement(
+                        navigator.push(
                           MaterialPageRoute(
                               builder: (context) => const SignUpForm()),
                         );
