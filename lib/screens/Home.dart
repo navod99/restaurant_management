@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:restaurant_management/screens/Login.dart';
+import './Tabs/HomeViewTab.dart';
 
 class Home extends StatefulWidget {
   final User? user;
@@ -21,7 +22,7 @@ class _HomeState extends State<Home> {
   ];
 
   static const List<Widget> _options = <Widget>[
-    Text('Home'),
+    HomeViewTab(),
     Text('Cart'),
     Text('Account'),
   ];
@@ -45,17 +46,6 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: Text(_tabTitles[_tabIndex]),
       ),
-      // body: Center(
-      //     child: Column(
-      //   mainAxisAlignment: MainAxisAlignment.center,
-      //   children: [
-      //     Text('Welcome, ${widget.user!.email}'),
-      //     const SizedBox(
-      //       height: 16,
-      //     ),
-      //     ElevatedButton(onPressed: _logout, child: const Text("Logout"))
-      //   ],
-      // )),
       body: IndexedStack(
         index: _tabIndex,
         children: _options,

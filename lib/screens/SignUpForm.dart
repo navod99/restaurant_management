@@ -6,7 +6,6 @@ import 'package:restaurant_management/repositories/registration_repository.dart'
 import 'package:restaurant_management/screens/Login.dart';
 import 'package:restaurant_management/screens/LoginForm.dart';
 import '../model/user.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
