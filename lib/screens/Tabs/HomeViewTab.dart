@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_management/screens/Order/OrderScreen.dart';
 
 class HomeViewTab extends StatelessWidget {
+  
   const HomeViewTab({super.key});
 
   @override
@@ -46,9 +47,8 @@ class HomeViewTab extends StatelessWidget {
               print("object");
               final navigator = Navigator.of(context);
               navigator.push(
-                MaterialPageRoute(builder: (context) => const OrderScreen()),
+                MaterialPageRoute(builder: (context) => OrderScreen()),
               );
-              const OrderScreen();
             }
             break;
           case 'Table Reservation':

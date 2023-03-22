@@ -1,5 +1,9 @@
+// import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurant_management/model/cartHandler.dart';
 import './screens/Login.dart';
 import 'firebase_options.dart';
 
@@ -9,8 +13,11 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await Firebase.initializeApp();
-  runApp(const MaterialApp(
-    home: MyWidget()));
+  runApp(ChangeNotifierProvider(
+    create: (context) => CartHandler(),
+    child: const MaterialApp(
+      home: MyWidget()),
+  ));
 }
 
 class MyWidget extends StatelessWidget {
