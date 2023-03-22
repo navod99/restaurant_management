@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:restaurant_management/screens/FeedbackForm.dart';
 import './screens/Login.dart';
 import 'firebase_options.dart';
 
@@ -9,8 +10,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await Firebase.initializeApp();
-  runApp(const MaterialApp(
-    home: MyWidget()));
+  runApp(const MaterialApp(home: MyWidget()));
 }
 
 class MyWidget extends StatelessWidget {
@@ -18,7 +18,6 @@ class MyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: Login());
+    return const Scaffold(body: FeedbackForm());
   }
 }
