@@ -7,7 +7,7 @@ class CartHandler extends ChangeNotifier {
   List<Item> get items => _items;
 
   int get itemCount => _items.length;
-  // double get total => _items.fold(0, (sum, item) => sum + item.price * item.quantity);
+  int get getTotal => _items.fold(0, (sum, item) => sum + item.price * item.quantity);
 
   void addItem(Item item) {
     _items.add(item);
@@ -17,6 +17,15 @@ class CartHandler extends ChangeNotifier {
   void removeItem(Item item) {
     _items.remove(item);
     notifyListeners();
+  }
+
+  void updateQuantity(num id, int quantity){
+    int index = _items.indexWhere((item) => item.id == id);
+
+    if(index >=0){
+      _items[index].quantity = quantity;
+      notifyListeners();
+    }  
   }
 
   void clear() {

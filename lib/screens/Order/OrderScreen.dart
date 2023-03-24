@@ -18,7 +18,7 @@ class _OrderScreenState extends State<OrderScreen> {
 
   static const List<Widget> _options = <Widget>[
     FoodListView(),
-    Text('Account'),
+    CartViewTab(),
     Text('Account'),
   ];
 

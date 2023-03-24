@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:restaurant_management/model/cart.dart';
 import 'package:restaurant_management/model/cartHandler.dart';
 import 'package:restaurant_management/model/itemList.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class FoodListView extends StatelessWidget {
   const FoodListView({super.key});
@@ -13,9 +12,9 @@ class FoodListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Item> items = <Item>[
-      Item(id: 1, name: 'FriedRice', price: 20.0),
-      Item(id: 2, name: 'Kottu', price: 40.0),
-      Item(id: 3, name: 'Rice', price: 30.0)
+      Item(id: 1, name: 'FriedRice', price: 20, quantity: 1),
+      Item(id: 2, name: 'Kottu', price: 40, quantity: 1),
+      Item(id: 3, name: 'Rice', price: 30, quantity: 1)
     ];
     return Container(
       margin: const EdgeInsets.only(top: 16),
