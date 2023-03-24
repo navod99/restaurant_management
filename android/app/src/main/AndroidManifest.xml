@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.restaurant_management">
+     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
    <application
         android:label="restaurant_management"
         android:name="${applicationName}"

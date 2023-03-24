@@ -60,8 +60,9 @@ class _SignInState extends State<SignIn> {
         title: const Text("Login"),
       ),
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
+          child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: SingleChildScrollView(
           child: Column(
             children: [
               Image.asset(
@@ -132,7 +133,7 @@ class _SignInState extends State<SignIn> {
             ],
           ),
         ),
-      ),
+      )),
       bottomNavigationBar: Container(
         height: 50,
         child: Center(
