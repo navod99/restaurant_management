@@ -17,7 +17,9 @@ class TableReservationList extends StatelessWidget {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text('Loading...');
+          return Center(
+            child: CircularProgressIndicator(),
+          );
         }
 
         return ListView(
@@ -35,7 +37,7 @@ class TableReservationList extends StatelessWidget {
               child: ListTile(
                 title: Text(
                   data['Date'],
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18.0,
                   ),
@@ -48,14 +50,19 @@ class TableReservationList extends StatelessWidget {
                     color: Colors.grey[600],
                   ),
                 ),
-                leading: CircleAvatar(
-                  child: Text(
-                    data['Date'][0],
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20.0,
-                    ),
+                leading: Container(
+                  width: 50.0,
+                  height: 50.0,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(25.0),
                   ),
+                ),
+                trailing: GestureDetector(
+                  onTap: () {
+                    document.reference.delete();
+                  },
+                  child: const Icon(Icons.delete),
                 ),
               ),
             );
