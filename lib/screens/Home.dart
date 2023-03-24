@@ -2,7 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:restaurant_management/model/cart.dart';
+import 'package:restaurant_management/screens/Common/BottomNavigatiobBar.dart';
 import 'package:restaurant_management/screens/Login.dart';
+import 'package:restaurant_management/screens/Tabs/CartViewTab.dart';
 import './Tabs/HomeViewTab.dart';
 
 class Home extends StatefulWidget {
@@ -14,6 +17,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  int itemCount = 0;
   int _tabIndex = 0;
   final List<String> _tabTitles = [
     'Home',
@@ -23,7 +27,7 @@ class _HomeState extends State<Home> {
 
   static const List<Widget> _options = <Widget>[
     HomeViewTab(),
-    Text('Cart'),
+    CartViewTab(),
     Text('Account'),
   ];
 
@@ -31,6 +35,12 @@ class _HomeState extends State<Home> {
     setState(() {
       _tabIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // cart.loadCart();
   }
 
   Future<void> _logout() async {
@@ -43,34 +53,17 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_tabTitles[_tabIndex]),
-      ),
-      body: IndexedStack(
-        index: _tabIndex,
-        children: _options,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color(0xFF6F35A5),
-        selectedItemColor: Colors.white,
-        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Account',
-          ),
-        ],
-        currentIndex: _tabIndex,
-        onTap: _onTapped,
-      ),
-    );
+        appBar: AppBar(
+          title: Text(_tabTitles[_tabIndex]),
+        ),
+        body: IndexedStack(
+          index: _tabIndex,
+          children: _options,
+        ),
+        bottomNavigationBar: BottomNavigation(
+          tabIndex: _tabIndex,
+          onTabTapped: _onTapped,
+          itemCount: itemCount,
+        ));
   }
 }
