@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management/model/cart.dart';
 import 'package:restaurant_management/screens/Common/BottomNavigatiobBar.dart';
+import 'package:restaurant_management/screens/Tabs/CartViewTab.dart';
 import './FoodListView.dart';
 
 class OrderScreen extends StatefulWidget {
-  const OrderScreen({super.key});
+
+  OrderScreen({super.key});
 
   @override
   State<OrderScreen> createState() => _OrderScreenState();
@@ -11,11 +14,11 @@ class OrderScreen extends StatefulWidget {
 
 class _OrderScreenState extends State<OrderScreen> {
    int _tabIndex = 0;
-
+   int itemCount =0;
 
   static const List<Widget> _options = <Widget>[
     FoodListView(),
-    Text('Cart'),
+    CartViewTab(),
     Text('Account'),
   ];
 
@@ -24,11 +27,17 @@ class _OrderScreenState extends State<OrderScreen> {
       _tabIndex = index;
     });
   }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
         return Scaffold(
       appBar: AppBar(
-        title: Text('HIII'),
+        title: Text('Place Your Order'),
       ),
       body: IndexedStack(
         index: _tabIndex,
@@ -36,7 +45,8 @@ class _OrderScreenState extends State<OrderScreen> {
       ),
       bottomNavigationBar: BottomNavigation(
         tabIndex: 0,
-        onTabTapped: _onTapped
+        onTabTapped: _onTapped,
+        itemCount:itemCount
       )
     );
   }

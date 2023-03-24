@@ -16,14 +16,24 @@ class _SignInState extends State<SignIn> {
   final FirebaseAuth auth = FirebaseAuth.instance;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  late String _password;
+  late String _email;
 
   String errorMessage = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _email = "";
+    _password = "";
+  }
 
   Future<void> _login() async {
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
+        email: _email,
+        password: _password,
       );
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -45,7 +55,7 @@ class _SignInState extends State<SignIn> {
         );
       }
     } on FirebaseAuthException catch (e) {
-      print(e.message);
+      print("wwww$e.message");
       setState(() {
         errorMessage = e.message!;
       });
@@ -62,75 +72,86 @@ class _SignInState extends State<SignIn> {
       body: Center(
           child: Padding(
         padding: const EdgeInsets.all(16),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Image.asset(
-                "assets/icons/food.png",
-                height: size.height * 0.25,
-              ),
-              const SizedBox(height: 35),
-              TextFormField(
-                controller: emailController,
-                keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.next,
-                cursorColor: const Color(0xFF6F35A5),
-                onSaved: (email) {},
-                decoration: InputDecoration(
-                    hintText: " Email",
-                    prefixIcon: const Padding(
-                      padding: EdgeInsets.all(5.0),
-                      child: Icon(Icons.person),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    )),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 15.0),
-                child: TextFormField(
-                  controller: passwordController,
-                  keyboardType: TextInputType.text,
-                  textInputAction: TextInputAction.done,
-                  obscureText: true,
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Image.asset(
+                  "assets/icons/food.png",
+                  height: size.height * 0.25,
+                ),
+                const SizedBox(height: 35),
+                TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.next,
                   cursorColor: const Color(0xFF6F35A5),
                   decoration: InputDecoration(
-                    hintText: "Password",
-                    prefixIcon: const Padding(
-                      padding: EdgeInsets.all(5.0),
-                      child: Icon(Icons.lock),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'required';
-                    }
-                    return null;
+                      hintText: " Email",
+                      prefixIcon: const Padding(
+                        padding: EdgeInsets.all(5.0),
+                        child: Icon(Icons.person),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      )),
+                  onChanged: (value) {
+                    setState(() {
+                      _email = value;
+                    });
                   },
                 ),
-              ),
-              const SizedBox(height: 4),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 20),
-                width: size.width * 0.6,
-                height: 50.0,
-                child: ElevatedButton(
-                  onPressed: _login,
-                  style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16.0),
-                        ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 15.0),
+                  child: TextFormField(
+                    keyboardType: TextInputType.text,
+                    textInputAction: TextInputAction.done,
+                    obscureText: true,
+                    cursorColor: const Color(0xFF6F35A5),
+                    decoration: InputDecoration(
+                      hintText: "Password",
+                      prefixIcon: const Padding(
+                        padding: EdgeInsets.all(5.0),
+                        child: Icon(Icons.lock),
                       ),
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          const Color(0xFF6F35A5))),
-                  child: const Text('Login'),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'required';
+                      }
+                      return null;
+                    },
+                    onChanged: (value) => {
+                      setState(() {
+                        _password = value;
+                      })
+                    },
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 4),
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 20),
+                  width: size.width * 0.6,
+                  height: 50.0,
+                  child: ElevatedButton(
+                    onPressed: _login,
+                    style: ButtonStyle(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+                        ),
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            const Color(0xFF6F35A5))),
+                    child: const Text('Login'),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       )),
