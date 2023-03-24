@@ -5,7 +5,6 @@ import 'package:restaurant_management/screens/Tabs/CartViewTab.dart';
 import './FoodListView.dart';
 
 class OrderScreen extends StatefulWidget {
-
   OrderScreen({super.key});
 
   @override
@@ -13,8 +12,8 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
-   int _tabIndex = 0;
-   int itemCount =0;
+  int _tabIndex = 0;
+  int itemCount = 0;
 
   static const List<Widget> _options = <Widget>[
     FoodListView(),
@@ -35,19 +34,15 @@ class _OrderScreenState extends State<OrderScreen> {
 
   @override
   Widget build(BuildContext context) {
-        return Scaffold(
-      appBar: AppBar(
-        title: Text('Place Your Order'),
-      ),
-      body: IndexedStack(
-        index: _tabIndex,
-        children: _options,
-      ),
-      bottomNavigationBar: BottomNavigation(
-        tabIndex: 0,
-        onTabTapped: _onTapped,
-        itemCount:itemCount
-      )
-    );
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Place Your Order'),
+        ),
+        body: IndexedStack(
+          index: _tabIndex,
+          children: _options,
+        ),
+        bottomNavigationBar: BottomNavigation(
+            tabIndex: 0, onTabTapped: _onTapped, itemCount: itemCount));
   }
 }

@@ -49,7 +49,7 @@ class _SignInState extends State<SignIn> {
           behavior: SnackBarBehavior.floating,
         ));
 
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => Home(userCredential.user)),
         );

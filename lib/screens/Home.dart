@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:restaurant_management/model/cart.dart';
 import 'package:restaurant_management/screens/Common/BottomNavigatiobBar.dart';
 import 'package:restaurant_management/screens/Login.dart';
+import 'package:restaurant_management/screens/Tabs/Account.dart';
 import 'package:restaurant_management/screens/Tabs/CartViewTab.dart';
 import './Tabs/HomeViewTab.dart';
 
@@ -28,7 +29,7 @@ class _HomeState extends State<Home> {
   static const List<Widget> _options = <Widget>[
     HomeViewTab(),
     CartViewTab(),
-    Text('Account'),
+    Account(),
   ];
 
   void _onTapped(int index) {

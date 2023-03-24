@@ -1,11 +1,11 @@
 class Item {
-  final num id;
+  final num itemId;
   final String name;
   final int price;
   int quantity = 1;
 
   Item(
-      {required this.id, required this.name, required this.price, required this.quantity});
+      {required this.itemId, required this.name, required this.price, required this.quantity});
 
   // Map<String, dynamic> toJson() => {
   //       'name': name,
