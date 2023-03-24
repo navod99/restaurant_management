@@ -10,7 +10,9 @@ import 'package:time_range/time_range.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 class ResiveTable extends StatefulWidget {
-  const ResiveTable({super.key});
+  final String id;
+
+  const ResiveTable({Key? key, required this.id}) : super(key: key);
 
   @override
   State<ResiveTable> createState() => _ResiveTableState();
@@ -21,9 +23,15 @@ class _ResiveTableState extends State<ResiveTable> {
   TextEditingController timeinput = TextEditingController();
   TextEditingController name = TextEditingController();
   TextEditingController remarks = TextEditingController();
+  final CollectionReference tableCollection =
+      FirebaseFirestore.instance.collection('TableReservation');
   var people = 1;
   @override
   Widget build(BuildContext context) {
+    if (widget.id != null) {
+      tableCollection.doc('id').get();
+      
+    }
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         resizeToAvoidBottomInset: true,
@@ -116,7 +124,7 @@ class _ResiveTableState extends State<ResiveTable> {
                         // print(parsedTime); //output 1970-01-01 22:53:00.000
                         // String formattedTime =
                         //     DateFormat('HH:mm:ss').format(parsedTime);
-                       // print(formattedTime); //output 14:59:00
+                        // print(formattedTime); //output 14:59:00
                         //DateFormat() is from intl package, you can format the time on any pattern you need.
 
                         setState(() {
@@ -180,6 +188,45 @@ class _ResiveTableState extends State<ResiveTable> {
                     'Time': timeinput.text,
                     'Count': people
                   });
+                  if (mounted) {
+                    setState(() {
+                      name.text = '';
+                      dateinput.text = '';
+                      timeinput.text = '';
+                      people = 1;
+                    });
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Row(children: [
+                        Icon(Icons.check),
+                        const Text(
+                          "Table Booked Successfully",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )
+                      ]),
+                      duration: const Duration(seconds: 3),
+                      backgroundColor: Colors.green,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      behavior: SnackBarBehavior.floating,
+                    ));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Row(children: [
+                        const Icon(Icons.warning_rounded),
+                        const Text(
+                          "somthing went wrong!",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ]),
+                      duration: const Duration(seconds: 3),
+                      backgroundColor: Colors.red,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      behavior: SnackBarBehavior.floating,
+                    ));
+                  }
                 },
                 child: Text('Book Table'))
           ],

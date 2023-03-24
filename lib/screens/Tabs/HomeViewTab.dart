@@ -57,7 +57,7 @@ class HomeViewTab extends StatelessWidget {
             {
               final navigator = Navigator.of(context);
               navigator.push(
-                  MaterialPageRoute(builder: (context) => const ResiveTable()));
+                  MaterialPageRoute(builder: (context) => const ResiveTable(id:'',)));
             }
             break;
           case 'Feedback':
