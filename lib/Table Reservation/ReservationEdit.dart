@@ -30,6 +30,7 @@ class TableEdit extends StatelessWidget {
 
         return Scaffold(
           appBar: AppBar(
+             backgroundColor: Color(0xFF6F35A5),
             title: Text(data['Name']),
           ),
           body: Padding(

@@ -82,6 +82,7 @@ class _DeliveryFormState extends State<DeliveryForm> {
 
     return Scaffold(
         appBar: AppBar(
+           backgroundColor: Color(0xFF6F35A5),
           title: Text('Place Your Order'),
         ),
         body: Center(

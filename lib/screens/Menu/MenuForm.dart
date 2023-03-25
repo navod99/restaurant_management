@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_management/model/menu.dart';
 import 'package:restaurant_management/repositories/menu_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../Common/BottomNavigatiobBar.dart';
 // import 'package:restaurant_management/screens/Common/BottomNavigatiobBar.dart';
 // import 'package:restaurant_management/screens/Menu/MenuListView.dart';
 // import 'package:restaurant_management/screens/Tabs/CartViewTab.dart';
@@ -23,6 +25,7 @@ class _MenuFormState extends State<MenuForm> {
   String? _menuName;
   String? _mealName;
   String? _mealPrice;
+  int itemCount = 3;
 
   void _onTapped(int index) {
     // setState(() {
@@ -37,13 +40,13 @@ class _MenuFormState extends State<MenuForm> {
     //     id: menuId,
     //     // menus: widget.menuList,
     //     // total: widget.total,
-        
+
     //     menuName: _menuName,
     //     mealName: _mealName,
     //     mealPrice: _mealPrice,
     //     );
 
-  //  await MenuRepository().addMenu(menu);
+    //  await MenuRepository().addMenu(menu);
 
     // if (mounted) {
     //   context.read<CartHandler>().clear();
@@ -77,6 +80,7 @@ class _MenuFormState extends State<MenuForm> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Menu'),
+          backgroundColor: Color(0xFF6F35A5),
         ),
         body: Center(
           child: Container(
@@ -194,49 +198,47 @@ class _MenuFormState extends State<MenuForm> {
                     width: size.width * 0.4,
                     height: 40.0,
                     child: ElevatedButton(
-                      onPressed: (){
-                            FirebaseFirestore.instance
-                      .collection('Menu')
-                      .add(<String, dynamic>{
-                    'Name': _menuName,
-                    'Meal Name': _mealName,
-                    'Price': _mealPrice,
-                    
-                  });
-                  if (mounted) {
-                    
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Row(children: [
-                        Icon(Icons.check),
-                        const Text(
-                          "Menu Added Successfully",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )
-                      ]),
-                      duration: const Duration(seconds: 3),
-                      backgroundColor: Colors.green,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      behavior: SnackBarBehavior.floating,
-                    ));
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Row(children: [
-                        const Icon(Icons.warning_rounded),
-                        const Text(
-                          "somthing went wrong!",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ]),
-                      duration: const Duration(seconds: 3),
-                      backgroundColor: Colors.red,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      behavior: SnackBarBehavior.floating,
-                    ));
-                  }
+                      onPressed: () {
+                        FirebaseFirestore.instance
+                            .collection('Menu')
+                            .add(<String, dynamic>{
+                          'Name': _menuName,
+                          'Meal Name': _mealName,
+                          'Price': _mealPrice,
+                        });
+                        if (mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Row(children: [
+                              Icon(Icons.check),
+                              const Text(
+                                "Menu Added Successfully",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              )
+                            ]),
+                            duration: const Duration(seconds: 3),
+                            backgroundColor: Colors.green,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            behavior: SnackBarBehavior.floating,
+                          ));
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Row(children: [
+                              const Icon(Icons.warning_rounded),
+                              const Text(
+                                "somthing went wrong!",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ]),
+                            duration: const Duration(seconds: 3),
+                            backgroundColor: Colors.red,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            behavior: SnackBarBehavior.floating,
+                          ));
+                        }
                       },
                       style: ButtonStyle(
                           shape:
@@ -255,8 +257,10 @@ class _MenuFormState extends State<MenuForm> {
             ),
           ),
         ),
-        // bottomNavigationBar: BottomNavigation(
-        //     tabIndex: 0, onTabTapped: _onTapped, )
-            );
- }
+        bottomNavigationBar: BottomNavigation(
+          tabIndex: 0,
+          onTabTapped: _onTapped,
+          itemCount: itemCount,
+        ));
+  }
 }

@@ -42,6 +42,7 @@ class _ViewOrderState extends State<ViewOrder> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
+           backgroundColor: Color(0xFF6F35A5),
           title: Text('Place Your Order'),
         ),
         body: ListView(

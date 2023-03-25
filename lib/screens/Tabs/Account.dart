@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:restaurant_management/Table%20Reservation/tableReservationList.dart';
+import 'package:restaurant_management/screens/Login.dart';
 import 'package:restaurant_management/screens/Order/MyOrders.dart';
 
 class Account extends StatefulWidget {
@@ -31,8 +32,7 @@ class _AccountState extends State<Account> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const Myorders()),
+                  MaterialPageRoute(builder: (context) => const Myorders()),
                 );
               },
               child: const Text('View My Orders'),
@@ -40,16 +40,21 @@ class _AccountState extends State<Account> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                 Navigator.push(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) =>  TableReservationList()),
+                      builder: (context) => TableReservationList()),
                 );
               },
               child: const Text('View my table reservations'),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                final navigator = Navigator.of(context);
+                navigator.pushReplacement(
+                  MaterialPageRoute(builder: (context) => Login()),
+                );
+              },
               child: const Text('Logout'),
             ),
           ],
