@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management/screens/Menu/MenuForm.dart';
+import 'package:restaurant_management/screens/Menu/MenuList.dart';
 import 'package:restaurant_management/screens/Order/OrderScreen.dart';
 
 class HomeViewTab extends StatelessWidget {
@@ -40,7 +42,12 @@ class HomeViewTab extends StatelessWidget {
       onTap: () {
         switch (title) {
           case 'Our Menu':
-            {}
+            {
+              final navigator = Navigator.of(context);
+              navigator.push(
+                MaterialPageRoute(builder: (context) => const MenuList()),
+              );
+            }
             break;
           case 'Place Order':
             {

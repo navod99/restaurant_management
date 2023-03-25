@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant_management/model/menu.dart';
 import 'package:restaurant_management/repositories/menu_repository.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:restaurant_management/screens/Common/BottomNavigatiobBar.dart';
 // import 'package:restaurant_management/screens/Menu/MenuListView.dart';
 // import 'package:restaurant_management/screens/Tabs/CartViewTab.dart';
@@ -11,9 +12,7 @@ import 'package:restaurant_management/repositories/menu_repository.dart';
 // import '../../model/cartHandler.dart';
 
 class MenuForm extends StatefulWidget {
-  final List<Menu> menuList;
-  final int total;
-  const MenuForm({required this.menuList, required this.total, super.key});
+  const MenuForm({super.key});
 
   @override
   State<MenuForm> createState() => _MenuFormState();
@@ -21,9 +20,9 @@ class MenuForm extends StatefulWidget {
 
 class _MenuFormState extends State<MenuForm> {
   final _formKey = GlobalKey<FormState>();
-  late String _menuName;
-  late String _mealName;
-  late String _mealPrice;
+  String? _menuName;
+  String? _mealName;
+  String? _mealPrice;
 
   void _onTapped(int index) {
     // setState(() {
@@ -34,17 +33,17 @@ class _MenuFormState extends State<MenuForm> {
   Future<void> _addMenu() async {
     String menuId = DateTime.now().millisecondsSinceEpoch.toString();
 
-    Menu menu = Menu (
-        id: menuId,
-        // menus: widget.menuList,
-        // total: widget.total,
+    // Menu menu = Menu (
+    //     id: menuId,
+    //     // menus: widget.menuList,
+    //     // total: widget.total,
         
-        menuName: _menuName,
-        mealName: _mealName,
-        mealPrice: _mealPrice,
-        );
+    //     menuName: _menuName,
+    //     mealName: _mealName,
+    //     mealPrice: _mealPrice,
+    //     );
 
-    await MenuRepository().addMenu(menu);
+  //  await MenuRepository().addMenu(menu);
 
     // if (mounted) {
     //   context.read<CartHandler>().clear();
@@ -77,7 +76,7 @@ class _MenuFormState extends State<MenuForm> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('Your Menu'),
+          title: Text('Menu'),
         ),
         body: Center(
           child: Container(
@@ -90,7 +89,7 @@ class _MenuFormState extends State<MenuForm> {
                     height: 16,
                   ),
                   const Text(
-                    "Delivery details",
+                    "Menu Details",
                     textAlign: TextAlign.center,
                     style:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
@@ -138,9 +137,8 @@ class _MenuFormState extends State<MenuForm> {
                           padding: const EdgeInsets.only(top: 15.0),
                           child: TextFormField(
                             cursorColor: const Color(0xFF6F35A5),
-                            maxLines: 3,
                             decoration: InputDecoration(
-                              hintText: "Address",
+                              hintText: "Price",
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
@@ -155,9 +153,9 @@ class _MenuFormState extends State<MenuForm> {
                         Padding(
                           padding: const EdgeInsets.only(top: 15.0),
                           child: TextFormField(
-                            cursorColor: const Color(0xFF6F35A5),
+                            cursorColor: Color.fromARGB(255, 83, 60, 2),
                             decoration: InputDecoration(
-                              hintText: "Contact No",
+                              hintText: "Category",
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
@@ -196,7 +194,50 @@ class _MenuFormState extends State<MenuForm> {
                     width: size.width * 0.4,
                     height: 40.0,
                     child: ElevatedButton(
-                      onPressed: _addMenu,
+                      onPressed: (){
+                            FirebaseFirestore.instance
+                      .collection('Menu')
+                      .add(<String, dynamic>{
+                    'Name': _menuName,
+                    'Meal Name': _mealName,
+                    'Price': _mealPrice,
+                    
+                  });
+                  if (mounted) {
+                    
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Row(children: [
+                        Icon(Icons.check),
+                        const Text(
+                          "Menu Added Successfully",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )
+                      ]),
+                      duration: const Duration(seconds: 3),
+                      backgroundColor: Colors.green,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      behavior: SnackBarBehavior.floating,
+                    ));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Row(children: [
+                        const Icon(Icons.warning_rounded),
+                        const Text(
+                          "somthing went wrong!",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ]),
+                      duration: const Duration(seconds: 3),
+                      backgroundColor: Colors.red,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      behavior: SnackBarBehavior.floating,
+                    ));
+                  }
+                      },
                       style: ButtonStyle(
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -205,8 +246,8 @@ class _MenuFormState extends State<MenuForm> {
                             ),
                           ),
                           backgroundColor: MaterialStateProperty.all<Color>(
-                              const Color(0xFF6F35A5))),
-                      child: const Text('Place Order'),
+                              Color.fromARGB(255, 241, 160, 38))),
+                      child: const Text('Submit'),
                     ),
                   ),
                 ],
