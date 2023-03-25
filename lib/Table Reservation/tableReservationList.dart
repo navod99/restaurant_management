@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:restaurant_management/Table%20Reservation/ReservationEdit.dart';
 import 'package:restaurant_management/Table%20Reservation/ResiveTable.dart';
 import 'package:restaurant_management/screens/Common/BottomNavigatiobBar.dart';
 
@@ -80,7 +81,7 @@ class TableReservationList extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      (ResiveTable(id: data['id'].toString(),))));
+                                      (TableEdit(id: document.reference.id.toString(),date: data['Date'].toString(), time: data['Time'].toString(), count:data['Count'].toString(), name: data['Name'].toString()))));
                         },
                         child: Icon(Icons.edit),
                       ),
