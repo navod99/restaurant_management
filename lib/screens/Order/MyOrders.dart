@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_management/model/order.dart';
 import 'package:restaurant_management/repositories/order_repository.dart';
 import 'package:restaurant_management/screens/Common/BottomNavigatiobBar.dart';
+import 'package:restaurant_management/screens/Order/EditOrder.dart';
 import 'package:restaurant_management/screens/Order/FoodListView.dart';
 import 'package:restaurant_management/screens/Order/OrderScreen.dart';
 import 'package:restaurant_management/screens/Order/ViewOrder.dart';
@@ -157,7 +158,12 @@ class _OrderCardState extends State<OrderCard> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 IconButton(
-                  onPressed: () => {},
+                  onPressed: () => {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) =>  EditOrder(order: widget.order,)),
+                      )
+                  },
                   icon: const Icon(Icons.edit),
                 ),
                 IconButton(
