@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_management/screens/Menu/MenuForm.dart';
 import 'package:restaurant_management/screens/Menu/MenuList.dart';
+import 'package:restaurant_management/Table%20Reservation/ResiveTable.dart';
 import 'package:restaurant_management/screens/Order/OrderScreen.dart';
+//import 'package:restaurant_management/Table Reservation/Reservation.dart';
 
 class HomeViewTab extends StatelessWidget {
   
@@ -59,7 +61,11 @@ class HomeViewTab extends StatelessWidget {
             }
             break;
           case 'Table Reservation':
-            {}
+            {
+              final navigator = Navigator.of(context);
+              navigator.push(
+                  MaterialPageRoute(builder: (context) => const ResiveTable(id:'',)));
+            }
             break;
           case 'Feedback':
             {}

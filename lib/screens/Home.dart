@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:restaurant_management/Table%20Reservation/tableReservationList.dart';
 import 'package:restaurant_management/model/cart.dart';
 import 'package:restaurant_management/screens/Common/BottomNavigatiobBar.dart';
 import 'package:restaurant_management/screens/Login.dart';
@@ -28,7 +29,9 @@ class _HomeState extends State<Home> {
   static const List<Widget> _options = <Widget>[
     HomeViewTab(),
     CartViewTab(),
-    Text('Account'),
+    TableReservationList(),
+    
+ 
   ];
 
   void _onTapped(int index) {

@@ -22,7 +22,7 @@ class _SignInState extends State<SignIn> {
 
   String errorMessage = '';
 
-    @override
+  @override
   void initState() {
     super.initState();
     _email = "";
@@ -70,10 +70,11 @@ class _SignInState extends State<SignIn> {
         title: const Text("Login"),
       ),
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Form(
-            key: _formKey,
+          child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
             child: Column(
               children: [
                 Image.asset(
@@ -125,7 +126,7 @@ class _SignInState extends State<SignIn> {
                     },
                     onChanged: (value) => {
                       setState(() {
-                        _password =value;
+                        _password = value;
                       })
                     },
                   ),
@@ -138,7 +139,8 @@ class _SignInState extends State<SignIn> {
                   child: ElevatedButton(
                     onPressed: _login,
                     style: ButtonStyle(
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16.0),
                           ),
@@ -152,7 +154,7 @@ class _SignInState extends State<SignIn> {
             ),
           ),
         ),
-      ),
+      )),
       bottomNavigationBar: Container(
         height: 50,
         child: Center(
