@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:restaurant_management/screens/AdminHome.dart';
 import 'package:restaurant_management/screens/Home.dart';
 import 'SignUpForm.dart';
 
@@ -51,7 +52,9 @@ class _SignInState extends State<SignIn> {
 
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Home(userCredential.user)),
+          userCredential.user!.email != 'admin@lemon.lk'?
+          MaterialPageRoute(builder: (context) => Home(userCredential.user)):
+          MaterialPageRoute(builder: (context) => AdminHome(userCredential.user))
         );
       }
     } on FirebaseAuthException catch (e) {
