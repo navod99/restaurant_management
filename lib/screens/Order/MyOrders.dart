@@ -32,7 +32,7 @@ class _MyordersState extends State<Myorders> {
     // });
   }
 
-  Future<List<MyOrder>> _ordersFuture =
+  Future<List<MyOrder>> _orders =
       OrderRepository().getAllOrders() as Future<List<MyOrder>>;
 
   @override
@@ -57,7 +57,7 @@ class _MyordersState extends State<Myorders> {
               ),
               const SizedBox(height: 20.0),
               FutureBuilder<List<MyOrder>>(
-                future: _ordersFuture,
+                future: _orders,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasError) {
@@ -105,7 +105,6 @@ class OrderCard extends StatefulWidget {
 }
 
 class _OrderCardState extends State<OrderCard> {
-  List<MyOrder> _myOrder = [];
 
   @override
   Widget build(BuildContext context) {
@@ -173,15 +172,15 @@ class _OrderCardState extends State<OrderCard> {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: Text('Confirm Deletion'),
-                          content: Text(
+                          title: const Text('Confirm Deletion'),
+                          content: const Text(
                               'Are you sure you want to cancel this order ?'),
                           actions: <Widget>[
                             TextButton(
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
-                              child: Text('No'),
+                              child: const Text('No'),
                             ),
                             TextButton(
                               onPressed: () {
@@ -202,7 +201,7 @@ class _OrderCardState extends State<OrderCard> {
                                   behavior: SnackBarBehavior.floating,
                                 ));
                               },
-                              child: Text('Yes'),
+                              child: const Text('Yes'),
                             ),
                           ],
                         );

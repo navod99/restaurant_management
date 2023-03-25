@@ -35,47 +35,11 @@ class _MenuFormState extends State<MenuForm> {
 
   Future<void> _addMenu() async {
     String menuId = DateTime.now().millisecondsSinceEpoch.toString();
-
-    // Menu menu = Menu (
-    //     id: menuId,
-    //     // menus: widget.menuList,
-    //     // total: widget.total,
-
-    //     menuName: _menuName,
-    //     mealName: _mealName,
-    //     mealPrice: _mealPrice,
-    //     );
-
-    //  await MenuRepository().addMenu(menu);
-
-    // if (mounted) {
-    //   context.read<CartHandler>().clear();
-    //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    //     content: const Text(
-    //       "Order placed sucessfully",
-    //       style: TextStyle(fontWeight: FontWeight.bold),
-    //     ),
-    //     duration: const Duration(seconds: 3),
-    //     backgroundColor: Colors.green,
-    //     shape: RoundedRectangleBorder(
-    //       borderRadius: BorderRadius.circular(12),
-    //     ),
-    //     behavior: SnackBarBehavior.floating,
-    //   ));
-
-    //   Navigator.pop(context);
-    // }
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
-    // const List<Widget> _options = <Widget>[
-    //   FoodListView(),
-    //   CartViewTab(),
-    //   Text('Account'),
-    // ];
 
     return Scaffold(
         appBar: AppBar(
@@ -121,22 +85,6 @@ class _MenuFormState extends State<MenuForm> {
                             },
                           ),
                         ),
-                        // Padding(
-                        //   padding: const EdgeInsets.only(top: 15.0),
-                        //   child: TextFormField(
-                        //     keyboardType: TextInputType.emailAddress,
-                        //     cursorColor: const Color(0xFF6F35A5),
-                        //     decoration: InputDecoration(
-                        //         hintText: "Your Email",
-                        //         border: OutlineInputBorder(
-                        //             borderRadius: BorderRadius.circular(8.0))),
-                        //     onChanged: (value) {
-                        //       setState(() {
-                        //         _menuPrice = value;
-                        //       });
-                        //     },
-                        //   ),
-                        // ),
                         Padding(
                           padding: const EdgeInsets.only(top: 15.0),
                           child: TextFormField(
@@ -171,24 +119,6 @@ class _MenuFormState extends State<MenuForm> {
                             },
                           ),
                         ),
-                        // Padding(
-                        //   padding: const EdgeInsets.only(top: 15.0),
-                        //   child: TextFormField(
-                        //     cursorColor: const Color(0xFF6F35A5),
-                        //     maxLines: 3,
-                        //     decoration: InputDecoration(
-                        //       hintText: "Remarks",
-                        //       border: OutlineInputBorder(
-                        //         borderRadius: BorderRadius.circular(8.0),
-                        //       ),
-                        //     ),
-                        //     onChanged: (value) {
-                        //       setState(() {
-                        //         _remarks = value;
-                        //       });
-                        //     },
-                        //   ),
-                        // ),
                       ],
                     ),
                   ),

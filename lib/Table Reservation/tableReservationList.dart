@@ -22,18 +22,18 @@ class TableReservationList extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
          backgroundColor: Color(0xFF6F35A5),
-          title: Text('Table Reservation List'),
+          title: const Text('Table Reservation List'),
       ),
       body:Center(
       child: StreamBuilder<QuerySnapshot>(
         stream: tableReservationCollection.snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
-            return Text('Something went wrong');
+            return const Text('Something went wrong');
           }
     
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
@@ -85,7 +85,7 @@ class TableReservationList extends StatelessWidget {
                         },
                         child: Icon(Icons.edit),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 16.0,
                       ),
                       GestureDetector(
@@ -94,15 +94,15 @@ class TableReservationList extends StatelessWidget {
                             context: context,
                             builder: (BuildContext context) {
                               return AlertDialog(
-                                title: Text('Confirm Deletion'),
-                                content: Text(
+                                title: const Text('Confirm Deletion'),
+                                content: const Text(
                                     'Are you sure you want to delete this event?'),
                                 actions: <Widget>[
                                   TextButton(
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                     },
-                                    child: Text('CANCEL'),
+                                    child: const Text('CANCEL'),
                                   ),
                                   TextButton(
                                     onPressed: () {
@@ -123,14 +123,14 @@ class TableReservationList extends StatelessWidget {
                                         behavior: SnackBarBehavior.floating,
                                       ));
                                     },
-                                    child: Text('DELETE'),
+                                    child: const Text('DELETE'),
                                   ),
                                 ],
                               );
                             },
                           );
                         },
-                        child: Icon(Icons.delete),
+                        child: const Icon(Icons.delete),
                       ),
                     ]),
                   ));

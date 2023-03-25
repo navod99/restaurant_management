@@ -27,7 +27,7 @@ class _AccountState extends State<Account> {
               height: size.height * 0.2,
             ),
             const SizedBox(height: 20),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -37,7 +37,7 @@ class _AccountState extends State<Account> {
               },
               child: const Text('View My Orders'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(

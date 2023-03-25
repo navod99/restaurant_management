@@ -25,8 +25,8 @@ class SplashScreen extends StatelessWidget {
           ),
           AnimatedText(
             text: 'Lemon Resturent',
-            duration: Duration(seconds: 2),
-            textStyle: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+            duration: const Duration(seconds: 2),
+            textStyle: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
           ),
         ],
       )),

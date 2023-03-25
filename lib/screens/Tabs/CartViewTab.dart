@@ -49,9 +49,9 @@ class _CartViewTabState extends State<CartViewTab> {
                                 IconButton(
                                   onPressed: () => {
                                     context.read<CartHandler>().updateQuantity(
-                                        item.itemId, item.quantity + 1)
+                                        item.itemId, item.quantity - 1)
                                   },
-                                  icon: Icon(Icons.add),
+                                  icon: const Icon(Icons.remove),
                                 ),
                                 Container(
                                   color: Colors.amber[200],
@@ -61,7 +61,7 @@ class _CartViewTabState extends State<CartViewTab> {
                                     child: Center(
                                       child: Text(
                                         item.quantity.toString(),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 18),
                                       ),
@@ -71,9 +71,9 @@ class _CartViewTabState extends State<CartViewTab> {
                                 IconButton(
                                   onPressed: () => {
                                     context.read<CartHandler>().updateQuantity(
-                                        item.itemId, item.quantity - 1)
+                                        item.itemId, item.quantity + 1)
                                   },
-                                  icon: const Icon(Icons.remove),
+                                  icon: const Icon(Icons.add),
                                 ),
                                 IconButton(
                                   onPressed: () => {
@@ -104,7 +104,7 @@ class _CartViewTabState extends State<CartViewTab> {
                 ),
                 trailing: Text(
                   context.read<CartHandler>().getTotal.toString(),
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
                 ),
               ),
               const SizedBox(height: 16),
@@ -114,7 +114,7 @@ class _CartViewTabState extends State<CartViewTab> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ElevatedButton(
-                      onPressed: () {  
+                      onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(

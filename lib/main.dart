@@ -18,7 +18,7 @@ void main() async {
       create: (context) => CartHandler(),
       child: MaterialApp(initialRoute: '/splash', routes: {
         '/splash': (context) => SplashScreen(),
-        '/main': (context) => MyWidget(),
+        '/main': (context) => const MyWidget(),
       }
           //home: MyWidget()),
           )));

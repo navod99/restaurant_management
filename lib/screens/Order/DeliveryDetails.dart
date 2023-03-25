@@ -42,7 +42,7 @@ class _DeliveryDetailsState extends State<DeliveryDetails> {
     return Scaffold(
         appBar: AppBar(
            backgroundColor: Color(0xFF6F35A5),
-          title: Text('Place Your Order'),
+          title: const Text('Place Your Order'),
         ),
         body: ListView(
           children: [
@@ -53,7 +53,6 @@ class _DeliveryDetailsState extends State<DeliveryDetails> {
                 children: [
                   Consumer<CartHandler>(builder: (context, cart, child) {
                     List<Item> itemList = cart.items;
-                    child:
                     return Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,

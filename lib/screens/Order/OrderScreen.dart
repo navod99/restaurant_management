@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_management/model/cart.dart';
 import 'package:restaurant_management/screens/Common/BottomNavigatiobBar.dart';
 import 'package:restaurant_management/screens/Tabs/CartViewTab.dart';
 import './FoodListView.dart';
@@ -37,7 +36,7 @@ class _OrderScreenState extends State<OrderScreen> {
     return Scaffold(
         appBar: AppBar(
            backgroundColor: Color(0xFF6F35A5),
-          title: Text('Place Your Order'),
+          title: const Text('Place Your Order'),
         ),
         body: IndexedStack(
           index: _tabIndex,

@@ -4,8 +4,6 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:restaurant_management/model/order.dart';
 import 'package:restaurant_management/repositories/order_repository.dart';
 import 'package:restaurant_management/screens/Common/BottomNavigatiobBar.dart';
-import 'package:restaurant_management/screens/Order/FoodListView.dart';
-import 'package:restaurant_management/screens/Tabs/CartViewTab.dart';
 
 class EditOrder extends StatefulWidget {
   final MyOrder order;
@@ -41,7 +39,6 @@ class _EditOrderState extends State<EditOrder> {
   }
 
     Future<void> _updateOrder() async {
-        print("object $widget.order.id");
         MyOrder order = MyOrder(
         id: widget.order.id,
         items: widget.order.items,
@@ -78,7 +75,7 @@ class _EditOrderState extends State<EditOrder> {
     return Scaffold(
         appBar: AppBar(
            backgroundColor: Color(0xFF6F35A5),
-          title: Text('Edit Order details'),
+          title: const Text('Edit Order details'),
         ),
         body: Center(
           child: Container(

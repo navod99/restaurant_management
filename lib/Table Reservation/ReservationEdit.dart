@@ -44,7 +44,7 @@ class _TableEditState extends State<TableEdit> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Edit table"),
+        title: const Text("Edit table"),
       ),
       body: SingleChildScrollView(
           child: Column(
@@ -158,8 +158,8 @@ class _TableEditState extends State<TableEdit> {
                       });
                     }
                   },
-                  icon: Icon(Icons.do_disturb_on_outlined),
-                  label: Text('')),
+                  icon: const Icon(Icons.do_disturb_on_outlined),
+                  label: const Text('')),
               Text(people.toString()),
               OutlinedButton.icon(
                   onPressed: () {
@@ -167,14 +167,14 @@ class _TableEditState extends State<TableEdit> {
                       people++;
                     });
                   },
-                  icon: Icon(Icons.add),
-                  label: Text('')),
+                  icon: const Icon(Icons.add),
+                  label: const Text('')),
             ],
           ),
           SizedBox(
               width: 300,
               child: TextFormField(
-                scrollPadding: EdgeInsets.only(bottom: 40),
+                scrollPadding: const EdgeInsets.only(bottom: 40),
                 decoration: const InputDecoration(
                     border: UnderlineInputBorder(), labelText: 'Remarks'),
                 // The validator receives the text that the user has entered.
@@ -205,9 +205,9 @@ class _TableEditState extends State<TableEdit> {
                     people = 1;
                   });
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Row(children: [
+                    content: Row(children: const[
                       Icon(Icons.check),
-                      const Text(
+                       Text(
                         "Updated Successfully",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       )
@@ -222,9 +222,9 @@ class _TableEditState extends State<TableEdit> {
                   Navigator.pop(context);
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Row(children: [
-                      const Icon(Icons.warning_rounded),
-                      const Text(
+                    content: Row(children: const [
+                       Icon(Icons.warning_rounded),
+                       Text(
                         "somthing went wrong!",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
@@ -238,7 +238,7 @@ class _TableEditState extends State<TableEdit> {
                   ));
                 }
               },
-              child: Text('Edit'))
+              child: const Text('Edit'))
         ],
       )),
     );
