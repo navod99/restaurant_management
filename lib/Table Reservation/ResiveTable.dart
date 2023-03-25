@@ -30,7 +30,6 @@ class _ResiveTableState extends State<ResiveTable> {
   Widget build(BuildContext context) {
     if (widget.id != null) {
       tableCollection.doc('id').get();
-      
     }
     Size size = MediaQuery.of(context).size;
     return Scaffold(
