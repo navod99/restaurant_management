@@ -20,7 +20,7 @@ class CartHandler extends ChangeNotifier {
   }
 
   void updateQuantity(num id, int quantity){
-    int index = _items.indexWhere((item) => item.id == id);
+    int index = _items.indexWhere((item) => item.itemId == id);
 
     if(index >=0){
       _items[index].quantity = quantity;

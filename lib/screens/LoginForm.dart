@@ -50,7 +50,7 @@ class _SignInState extends State<SignIn> {
           behavior: SnackBarBehavior.floating,
         ));
 
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           userCredential.user!.email != 'admin@lemon.lk'?
           MaterialPageRoute(builder: (context) => Home(userCredential.user)):

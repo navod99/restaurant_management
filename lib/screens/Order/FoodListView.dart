@@ -12,9 +12,9 @@ class FoodListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Item> items = <Item>[
-      Item(id: 1, name: 'FriedRice', price: 20, quantity: 1),
-      Item(id: 2, name: 'Kottu', price: 40, quantity: 1),
-      Item(id: 3, name: 'Rice', price: 30, quantity: 1)
+      Item(itemId: 1, name: 'FriedRice', price: 20, quantity: 1),
+      Item(itemId: 2, name: 'Kottu', price: 40, quantity: 1),
+      Item(itemId: 3, name: 'Rice', price: 30, quantity: 1)
     ];
     return Container(
       margin: const EdgeInsets.only(top: 16),
