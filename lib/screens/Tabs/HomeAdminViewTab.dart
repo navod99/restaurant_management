@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_management/Table%20Reservation/ResiveTable.dart';
+import 'package:restaurant_management/screens/Menu/MenuForm.dart';
 import 'package:restaurant_management/screens/Order/OrderScreen.dart';
 
 import '../Menu/MenuList.dart';
@@ -45,7 +46,7 @@ class HomeAdminViewTab extends StatelessWidget {
           case 'Our Menu':
             {final navigator = Navigator.of(context);
               navigator.push(
-                MaterialPageRoute(builder: (context) => const MenuList()),
+                MaterialPageRoute(builder: (context) => const MenuForm()),
               );}
             break;
           case 'Place Order':

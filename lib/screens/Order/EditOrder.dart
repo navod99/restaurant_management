@@ -77,6 +77,7 @@ class _EditOrderState extends State<EditOrder> {
     
     return Scaffold(
         appBar: AppBar(
+           backgroundColor: Color(0xFF6F35A5),
           title: Text('Edit Order details'),
         ),
         body: Center(
