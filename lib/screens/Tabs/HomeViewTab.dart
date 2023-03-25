@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management/screens/Feedback/Feed_backs.dart';
 import 'package:restaurant_management/screens/Menu/MenuForm.dart';
 import 'package:restaurant_management/screens/Menu/MenuList.dart';
 import 'package:restaurant_management/Table%20Reservation/ResiveTable.dart';
@@ -68,7 +69,13 @@ class HomeViewTab extends StatelessWidget {
             }
             break;
           case 'Feedback':
-            {}
+            {
+                final navigator = Navigator.of(context);
+              navigator.push(MaterialPageRoute(
+                  builder: (context) => const AddFeedback(
+           
+                      )));
+            }
             break;
           default:
             {}
