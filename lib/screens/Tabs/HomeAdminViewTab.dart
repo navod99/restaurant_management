@@ -3,9 +3,8 @@ import 'package:restaurant_management/Table%20Reservation/ResiveTable.dart';
 import 'package:restaurant_management/screens/Order/OrderScreen.dart';
 //import 'package:restaurant_management/Table Reservation/Reservation.dart';
 
-class HomeViewTab extends StatelessWidget {
-  
-  const HomeViewTab({super.key});
+class HomeAdminViewTab extends StatelessWidget {
+  const HomeAdminViewTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +18,16 @@ class HomeViewTab extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               cardView('Our Menu', 'assets/images/chef.png', size, context),
-              cardView('Place Order', 'assets/images/order.png', size, context),
+              //cardView('Place Order', 'assets/images/order.png', size, context),
             ],
           ),
           const SizedBox(height: 48.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              cardView('Table Reservation', 'assets/images/table.png', size,
-                  context),
-              cardView('Feedback', 'assets/images/feedback.png', size, context),
+              //cardView('Table Reservation', 'assets/images/table.png', size,
+              //context),
+              //cardView('Feedback', 'assets/images/feedback.png', size, context),
             ],
           ),
         ],
@@ -56,8 +55,10 @@ class HomeViewTab extends StatelessWidget {
           case 'Table Reservation':
             {
               final navigator = Navigator.of(context);
-              navigator.push(
-                  MaterialPageRoute(builder: (context) => const ResiveTable(id:'',)));
+              navigator.push(MaterialPageRoute(
+                  builder: (context) => const ResiveTable(
+                        id: '',
+                      )));
             }
             break;
           case 'Feedback':

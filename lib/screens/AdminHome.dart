@@ -8,17 +8,18 @@ import 'package:restaurant_management/screens/Common/BottomNavigatiobBar.dart';
 import 'package:restaurant_management/screens/Login.dart';
 import 'package:restaurant_management/screens/Tabs/Account.dart';
 import 'package:restaurant_management/screens/Tabs/CartViewTab.dart';
+import 'package:restaurant_management/screens/Tabs/HomeAdminViewTab.dart';
 import './Tabs/HomeViewTab.dart';
 
-class Home extends StatefulWidget {
+class AdminHome extends StatefulWidget {
   final User? user;
-  const Home(this.user, {super.key});
+  const AdminHome(this.user, {super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<AdminHome> createState() => _AdminHomeState();
 }
 
-class _HomeState extends State<Home> {
+class _AdminHomeState extends State<AdminHome> {
   int itemCount = 0;
   int _tabIndex = 0;
   final List<String> _tabTitles = [
@@ -28,8 +29,7 @@ class _HomeState extends State<Home> {
   ];
 
   static const List<Widget> _options = <Widget>[
- 
-    HomeViewTab(),
+    HomeAdminViewTab(),
     CartViewTab(),
     Account(),
   ];

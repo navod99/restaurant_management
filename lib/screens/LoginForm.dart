@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:restaurant_management/screens/AdminHome.dart';
 import 'package:restaurant_management/screens/Home.dart';
 import 'SignUpForm.dart';
 
@@ -22,7 +23,7 @@ class _SignInState extends State<SignIn> {
 
   String errorMessage = '';
 
-    @override
+  @override
   void initState() {
     super.initState();
     _email = "";
@@ -51,7 +52,9 @@ class _SignInState extends State<SignIn> {
 
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => Home(userCredential.user)),
+          userCredential.user!.email != 'admin@lemon.lk'?
+          MaterialPageRoute(builder: (context) => Home(userCredential.user)):
+          MaterialPageRoute(builder: (context) => AdminHome(userCredential.user))
         );
       }
     } on FirebaseAuthException catch (e) {
@@ -70,10 +73,11 @@ class _SignInState extends State<SignIn> {
         title: const Text("Login"),
       ),
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Form(
-            key: _formKey,
+          child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
             child: Column(
               children: [
                 Image.asset(
@@ -125,7 +129,7 @@ class _SignInState extends State<SignIn> {
                     },
                     onChanged: (value) => {
                       setState(() {
-                        _password =value;
+                        _password = value;
                       })
                     },
                   ),
@@ -138,7 +142,8 @@ class _SignInState extends State<SignIn> {
                   child: ElevatedButton(
                     onPressed: _login,
                     style: ButtonStyle(
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16.0),
                           ),
@@ -152,7 +157,7 @@ class _SignInState extends State<SignIn> {
             ),
           ),
         ),
-      ),
+      )),
       bottomNavigationBar: Container(
         height: 50,
         child: Center(

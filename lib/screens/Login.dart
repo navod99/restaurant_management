@@ -16,8 +16,9 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
+        child: Padding(
+      padding: const EdgeInsets.all(16),
+      child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -84,6 +85,6 @@ class _LoginState extends State<Login> {
           ],
         ),
       ),
-    );
+    ));
   }
 }

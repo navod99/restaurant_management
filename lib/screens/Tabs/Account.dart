@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:restaurant_management/Table%20Reservation/tableReservationList.dart';
 import 'package:restaurant_management/screens/Order/MyOrders.dart';
 
 class Account extends StatefulWidget {
@@ -38,7 +39,13 @@ class _AccountState extends State<Account> {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                 Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>  TableReservationList()),
+                );
+              },
               child: const Text('View my table reservations'),
             ),
             ElevatedButton(
