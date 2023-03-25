@@ -47,7 +47,7 @@ class HomeViewTab extends StatelessWidget {
             {
               final navigator = Navigator.of(context);
               navigator.push(
-                MaterialPageRoute(builder: (context) => const MenuList()),
+                MaterialPageRoute(builder: (context) => const MenuForm()),
               );
             }
             break;
