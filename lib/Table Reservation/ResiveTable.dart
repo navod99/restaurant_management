@@ -43,7 +43,7 @@ class _ResiveTableState extends State<ResiveTable> {
     return Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
-          backgroundColor: Color(0xFF6F35A5),
+          backgroundColor: const Color(0xFF6F35A5),
           title: const Text('Table Booking'),
         ),
         body: SingleChildScrollView(
@@ -160,8 +160,8 @@ class _ResiveTableState extends State<ResiveTable> {
                           });
                         }
                       },
-                      icon: Icon(Icons.do_disturb_on_outlined),
-                      label: Text('')),
+                      icon: const Icon(Icons.do_disturb_on_outlined),
+                      label: const Text('')),
                   Text(people.toString()),
                   OutlinedButton.icon(
                       onPressed: () {
@@ -169,14 +169,14 @@ class _ResiveTableState extends State<ResiveTable> {
                           people++;
                         });
                       },
-                      icon: Icon(Icons.add),
-                      label: Text('')),
+                      icon: const Icon(Icons.add),
+                      label: const Text('')),
                 ],
               ),
               SizedBox(
                   width: 300,
                   child: TextFormField(
-                    scrollPadding: EdgeInsets.only(bottom: 40),
+                    scrollPadding: const EdgeInsets.only(bottom: 40),
                     decoration: const InputDecoration(
                         border: UnderlineInputBorder(), labelText: 'Remarks'),
                     // The validator receives the text that the user has entered.
@@ -187,7 +187,7 @@ class _ResiveTableState extends State<ResiveTable> {
                       return null;
                     },
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               SizedBox(
@@ -245,7 +245,7 @@ class _ResiveTableState extends State<ResiveTable> {
                       },
                       child: Text(
                         'Book Table',
-                        style: const TextStyle(fontSize: 24),
+                        style: TextStyle(fontSize: 24),
                       ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFF6F35A5),
@@ -253,7 +253,7 @@ class _ResiveTableState extends State<ResiveTable> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ))),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
             ],

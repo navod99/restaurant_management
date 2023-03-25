@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:restaurant_management/screens/LoginForm.dart';
 import 'package:restaurant_management/screens/SignUpForm.dart';
 
@@ -40,7 +39,7 @@ class _LoginState extends State<Login> {
                     width: size.width * 0.8,
                     child: FloatingActionButton(
                       heroTag: "SignIn",
-                      backgroundColor: Color(0xFF6F35A5),
+                      backgroundColor: const Color(0xFF6F35A5),
                       onPressed: () {
                         final navigator = Navigator.of(context);
                         navigator.pushReplacement(
@@ -62,7 +61,7 @@ class _LoginState extends State<Login> {
                     width: size.width * 0.8,
                     child: FloatingActionButton(
                       heroTag: "SignUp",
-                      backgroundColor: Color(0xFF6F35A5),
+                      backgroundColor: const Color(0xFF6F35A5),
                       onPressed: () async {
                         final navigator = Navigator.of(context);
                         navigator.push(

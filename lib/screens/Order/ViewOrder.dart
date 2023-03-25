@@ -1,5 +1,3 @@
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:restaurant_management/model/itemList.dart';
 import 'package:restaurant_management/model/order.dart';
 import 'package:restaurant_management/screens/Common/BottomNavigatiobBar.dart';
@@ -43,7 +41,7 @@ class _ViewOrderState extends State<ViewOrder> {
     return Scaffold(
         appBar: AppBar(
            backgroundColor: Color(0xFF6F35A5),
-          title: Text('Place Your Order'),
+          title: const Text('Place Your Order'),
         ),
         body: ListView(
           children: [
@@ -112,7 +110,7 @@ class _ViewOrderState extends State<ViewOrder> {
                                       const SizedBox(width: 8),
                                       Text(
                                         widget.order.customerName.toString(),
-                                        style: TextStyle(fontSize: 18),
+                                        style: const TextStyle(fontSize: 18),
                                       ),
                                     ],
                                   ),

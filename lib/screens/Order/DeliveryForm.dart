@@ -1,6 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_management/model/itemList.dart';
@@ -66,7 +63,8 @@ class _DeliveryFormState extends State<DeliveryForm> {
         behavior: SnackBarBehavior.floating,
       ));
 
-      Navigator.pop(context);
+      Navigator.popUntil(context, (route) => route.isFirst == true);
+
     }
   }
 
@@ -83,123 +81,125 @@ class _DeliveryFormState extends State<DeliveryForm> {
     return Scaffold(
         appBar: AppBar(
            backgroundColor: Color(0xFF6F35A5),
-          title: Text('Place Your Order'),
+          title: const Text('Place Your Order'),
         ),
         body: Center(
-          child: Container(
-            margin: const EdgeInsets.only(top: 8.0),
-            child: SizedBox(
-              width: size.width * 0.9,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  const Text(
-                    "Delivery details",
-                    textAlign: TextAlign.center,
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 2.0),
-                          child: TextFormField(
-                            keyboardType: TextInputType.text,
-                            cursorColor: const Color(0xFF6F35A5),
-                            decoration: InputDecoration(
-                                hintText: "Name",
+          child: SingleChildScrollView(
+            child: Container(
+              margin: const EdgeInsets.only(top: 8.0),
+              child: SizedBox(
+                width: size.width * 0.9,
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const Text(
+                      "Delivery details",
+                      textAlign: TextAlign.center,
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 2.0),
+                            child: TextFormField(
+                              keyboardType: TextInputType.text,
+                              cursorColor: const Color(0xFF6F35A5),
+                              decoration: InputDecoration(
+                                  hintText: "Name",
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8.0))),
+                              onChanged: (value) {
+                                setState(() {
+                                  _name = value;
+                                });
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 15.0),
+                            child: TextFormField(
+                              cursorColor: const Color(0xFF6F35A5),
+                              maxLines: 3,
+                              decoration: InputDecoration(
+                                hintText: "Address",
                                 border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8.0))),
-                            onChanged: (value) {
-                              setState(() {
-                                _name = value;
-                              });
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 15.0),
-                          child: TextFormField(
-                            cursorColor: const Color(0xFF6F35A5),
-                            maxLines: 3,
-                            decoration: InputDecoration(
-                              hintText: "Address",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8.0),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
                               ),
+                              onChanged: (value) {
+                                setState(() {
+                                  _address = value;
+                                });
+                              },
                             ),
-                            onChanged: (value) {
-                              setState(() {
-                                _address = value;
-                              });
-                            },
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 15.0),
-                          child: TextFormField(
-                            cursorColor: const Color(0xFF6F35A5),
-                            decoration: InputDecoration(
-                              hintText: "Contact No",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8.0),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 15.0),
+                            child: TextFormField(
+                              cursorColor: const Color(0xFF6F35A5),
+                              decoration: InputDecoration(
+                                hintText: "Contact No",
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
                               ),
+                              onChanged: (value) {
+                                setState(() {
+                                  _mobileNo = value;
+                                });
+                              },
                             ),
-                            onChanged: (value) {
-                              setState(() {
-                                _mobileNo = value;
-                              });
-                            },
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 15.0),
-                          child: TextFormField(
-                            cursorColor: const Color(0xFF6F35A5),
-                            maxLines: 3,
-                            decoration: InputDecoration(
-                              hintText: "Remarks",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8.0),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 15.0),
+                            child: TextFormField(
+                              cursorColor: const Color(0xFF6F35A5),
+                              maxLines: 3,
+                              decoration: InputDecoration(
+                                hintText: "Remarks",
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
                               ),
+                              onChanged: (value) {
+                                setState(() {
+                                  _remarks = value;
+                                });
+                              },
                             ),
-                            onChanged: (value) {
-                              setState(() {
-                                _remarks = value;
-                              });
-                            },
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 4),
-                  Container(
-                    margin: const EdgeInsets.symmetric(vertical: 20),
-                    width: size.width * 0.4,
-                    height: 40.0,
-                    child: ElevatedButton(
-                      onPressed: _placeOrder,
-                      style: ButtonStyle(
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
+                    const SizedBox(height: 4),
+                    Container(
+                      margin: const EdgeInsets.symmetric(vertical: 20),
+                      width: size.width * 0.4,
+                      height: 40.0,
+                      child: ElevatedButton(
+                        onPressed: _placeOrder,
+                        style: ButtonStyle(
+                            shape:
+                                MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
                             ),
-                          ),
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              const Color(0xFF6F35A5))),
-                      child: const Text('Place Order'),
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                const Color(0xFF6F35A5))),
+                        child: const Text('Place Order'),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

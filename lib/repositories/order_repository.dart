@@ -46,25 +46,6 @@ class OrderRepository {
         .toList();
   }
 
-  Future<MyOrder> getOrderById(String orderId) async {
-    DocumentSnapshot doc = await _collection.doc(orderId).get();
-    return MyOrder(
-        id: doc.id,
-        items: (doc.get('items') as List<dynamic>)
-            .map((item) => Item(
-                  itemId: item['itemId'],
-                  name: item['name'],
-                  price: item['price'],
-                  quantity: item['quantity'],
-                ))
-            .toList(),
-        total: doc.get('total'),
-        address: doc.get('address'),
-        contactNo: doc.get('contactNo'),
-        customerName: doc.get('customerName'),
-        remarks: doc.get('remarks'));
-  }
-
   Future<void> updateOrder(MyOrder order) async {
     await _collection.doc(order.id).update({
       'address': order.address,

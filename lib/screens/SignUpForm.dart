@@ -101,7 +101,7 @@ class _SignUpFormState extends State<SignUpForm> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-           backgroundColor: Color(0xFF6F35A5),
+           backgroundColor: const Color(0xFF6F35A5),
           title: const Text("Sign Up"),
         ),
         body: Center(

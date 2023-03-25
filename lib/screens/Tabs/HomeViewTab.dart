@@ -3,7 +3,6 @@ import 'package:restaurant_management/screens/Menu/MenuForm.dart';
 import 'package:restaurant_management/screens/Menu/MenuList.dart';
 import 'package:restaurant_management/Table%20Reservation/ResiveTable.dart';
 import 'package:restaurant_management/screens/Order/OrderScreen.dart';
-//import 'package:restaurant_management/Table Reservation/Reservation.dart';
 
 class HomeViewTab extends StatelessWidget {
   const HomeViewTab({super.key});

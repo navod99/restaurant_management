@@ -51,7 +51,6 @@ class HomeAdminViewTab extends StatelessWidget {
             break;
           case 'Place Order':
             {
-              print("object");
               final navigator = Navigator.of(context);
               navigator.push(
                 MaterialPageRoute(builder: (context) => OrderScreen()),

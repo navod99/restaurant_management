@@ -17,27 +17,5 @@ class MyOrder {
       required this.address,
       required this.contactNo,
       required this.remarks});
-
-  // Map<String, dynamic> toMap() {
-  //   return {
-  //     'items': items,
-  //     'total': total,
-  //     'customerName': customerName,
-  //     'address': address,
-  //     'contactNo': contactNo,
-  //     'remarks': remarks
-  //   };
-  // }
-
-  // factory Order.fromMap(DocumentSnapshot data) {
-  //   return Order(
-  //       id: data.id,
-  //       items: data['items'],
-  //       total: data['total'],
-  //       customerName: data['customerName'],
-  //       address: data['address'],
-  //       contactNo: data['contactNo'],
-  //       remarks: data['remarks'],
-  //       );
-  // }
+      
 }

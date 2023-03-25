@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:restaurant_management/model/cart.dart';
 import 'package:restaurant_management/model/cartHandler.dart';
 import 'package:restaurant_management/model/itemList.dart';
 
