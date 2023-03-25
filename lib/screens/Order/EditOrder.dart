@@ -1,35 +1,29 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:restaurant_management/model/itemList.dart';
 import 'package:restaurant_management/model/order.dart';
 import 'package:restaurant_management/repositories/order_repository.dart';
 import 'package:restaurant_management/screens/Common/BottomNavigatiobBar.dart';
 import 'package:restaurant_management/screens/Order/FoodListView.dart';
 import 'package:restaurant_management/screens/Tabs/CartViewTab.dart';
 
-import '../../model/cartHandler.dart';
-
-class DeliveryForm extends StatefulWidget {
-  final List<Item> itemList;
-  final int total;
-  const DeliveryForm({required this.itemList, required this.total, super.key});
+class EditOrder extends StatefulWidget {
+  final MyOrder order;
+  const EditOrder({required this.order, super.key});
 
   @override
-  State<DeliveryForm> createState() => _DeliveryFormState();
+  State<EditOrder> createState() => _EditOrderState();
 }
 
-class _DeliveryFormState extends State<DeliveryForm> {
+class _EditOrderState extends State<EditOrder> {
   int _tabIndex = 0;
   int itemCount = 0;
   final _formKey = GlobalKey<FormState>();
-  late String _address;
-  late String _remarks;
-  late String _name;
-  late String _email;
-  late String _mobileNo;
+  String? _address;
+  String? _remarks;
+  String? _name;
+  String? _email;
+  String? _mobileNo;
 
   void _onTapped(int index) {
     // setState(() {
@@ -37,25 +31,32 @@ class _DeliveryFormState extends State<DeliveryForm> {
     // });
   }
 
-  Future<void> _placeOrder() async {
-    String orderId = DateTime.now().millisecondsSinceEpoch.toString();
+  @override
+  void initState() {
+    super.initState();
+    _address = widget.order.address;
+    _name = widget.order.customerName;
+    _mobileNo = widget.order.contactNo;
+    _remarks = widget.order.remarks;
+  }
 
-    MyOrder order = MyOrder(
-        id: orderId,
-        items: widget.itemList,
-        total: widget.total,
+    Future<void> _updateOrder() async {
+        print("object $widget.order.id");
+        MyOrder order = MyOrder(
+        id: widget.order.id,
+        items: widget.order.items,
+        total: widget.order.total,
         customerName: _name,
         address: _address,
         contactNo: _mobileNo,
-        remarks: _remarks);
+        remarks: _remarks);  
 
-    await OrderRepository().addOrder(order);
+    await OrderRepository().updateOrder(order);
 
     if (mounted) {
-      context.read<CartHandler>().clear();
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: const Text(
-          "Order placed sucessfully",
+          "Editting sucessfull",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         duration: const Duration(seconds: 3),
@@ -66,23 +67,17 @@ class _DeliveryFormState extends State<DeliveryForm> {
         behavior: SnackBarBehavior.floating,
       ));
 
-      Navigator.pop(context);
+      Navigator.popUntil(context, (route) => route.isFirst == true);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
-    const List<Widget> _options = <Widget>[
-      FoodListView(),
-      CartViewTab(),
-      Text('Account'),
-    ];
-
+    
     return Scaffold(
         appBar: AppBar(
-          title: Text('Place Your Order'),
+          title: Text('Edit Order details'),
         ),
         body: Center(
           child: Container(
@@ -110,6 +105,7 @@ class _DeliveryFormState extends State<DeliveryForm> {
                         Padding(
                           padding: const EdgeInsets.only(top: 2.0),
                           child: TextFormField(
+                            initialValue: widget.order.customerName,
                             keyboardType: TextInputType.text,
                             cursorColor: const Color(0xFF6F35A5),
                             decoration: InputDecoration(
@@ -126,6 +122,7 @@ class _DeliveryFormState extends State<DeliveryForm> {
                         Padding(
                           padding: const EdgeInsets.only(top: 15.0),
                           child: TextFormField(
+                            initialValue: widget.order.address,
                             cursorColor: const Color(0xFF6F35A5),
                             maxLines: 3,
                             decoration: InputDecoration(
@@ -144,6 +141,7 @@ class _DeliveryFormState extends State<DeliveryForm> {
                         Padding(
                           padding: const EdgeInsets.only(top: 15.0),
                           child: TextFormField(
+                            initialValue: widget.order.contactNo,
                             cursorColor: const Color(0xFF6F35A5),
                             decoration: InputDecoration(
                               hintText: "Contact No",
@@ -161,6 +159,7 @@ class _DeliveryFormState extends State<DeliveryForm> {
                         Padding(
                           padding: const EdgeInsets.only(top: 15.0),
                           child: TextFormField(
+                            initialValue: widget.order.remarks,
                             cursorColor: const Color(0xFF6F35A5),
                             maxLines: 3,
                             decoration: InputDecoration(
@@ -185,7 +184,7 @@ class _DeliveryFormState extends State<DeliveryForm> {
                     width: size.width * 0.4,
                     height: 40.0,
                     child: ElevatedButton(
-                      onPressed: _placeOrder,
+                      onPressed: _updateOrder,
                       style: ButtonStyle(
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -195,7 +194,7 @@ class _DeliveryFormState extends State<DeliveryForm> {
                           ),
                           backgroundColor: MaterialStateProperty.all<Color>(
                               const Color(0xFF6F35A5))),
-                      child: const Text('Place Order'),
+                      child: const Text('Edit delivery details'),
                     ),
                   ),
                 ],

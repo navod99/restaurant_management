@@ -49,7 +49,7 @@ class _CartViewTabState extends State<CartViewTab> {
                                 IconButton(
                                   onPressed: () => {
                                     context.read<CartHandler>().updateQuantity(
-                                        item.id, item.quantity + 1)
+                                        item.itemId, item.quantity + 1)
                                   },
                                   icon: Icon(Icons.add),
                                 ),
@@ -71,7 +71,7 @@ class _CartViewTabState extends State<CartViewTab> {
                                 IconButton(
                                   onPressed: () => {
                                     context.read<CartHandler>().updateQuantity(
-                                        item.id, item.quantity - 1)
+                                        item.itemId, item.quantity - 1)
                                   },
                                   icon: const Icon(Icons.remove),
                                 ),

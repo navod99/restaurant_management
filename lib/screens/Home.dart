@@ -6,6 +6,7 @@ import 'package:restaurant_management/Table%20Reservation/tableReservationList.d
 import 'package:restaurant_management/model/cart.dart';
 import 'package:restaurant_management/screens/Common/BottomNavigatiobBar.dart';
 import 'package:restaurant_management/screens/Login.dart';
+import 'package:restaurant_management/screens/Tabs/Account.dart';
 import 'package:restaurant_management/screens/Tabs/CartViewTab.dart';
 import './Tabs/HomeViewTab.dart';
 
@@ -30,9 +31,7 @@ class _HomeState extends State<Home> {
  
     HomeViewTab(),
     CartViewTab(),
-    TableReservationList(),
-    
- 
+    Account(),
   ];
 
   void _onTapped(int index) {
