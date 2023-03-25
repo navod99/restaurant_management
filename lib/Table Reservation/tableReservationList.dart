@@ -21,6 +21,7 @@ class TableReservationList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+         backgroundColor: Color(0xFF6F35A5),
           title: Text('Table Reservation List'),
       ),
       body:Center(

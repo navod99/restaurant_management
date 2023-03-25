@@ -40,6 +40,7 @@ class _MyordersState extends State<Myorders> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
+           backgroundColor: Color(0xFF6F35A5),
           title: const Text('Order History'),
         ),
         body: Container(

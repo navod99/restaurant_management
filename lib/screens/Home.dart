@@ -57,6 +57,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Color(0xFF6F35A5),
           title: Text(_tabTitles[_tabIndex]),
         ),
         body: IndexedStack(

@@ -36,6 +36,7 @@ class _OrderScreenState extends State<OrderScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+           backgroundColor: Color(0xFF6F35A5),
           title: Text('Place Your Order'),
         ),
         body: IndexedStack(

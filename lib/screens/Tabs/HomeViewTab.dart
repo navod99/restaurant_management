@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management/screens/Menu/MenuForm.dart';
+import 'package:restaurant_management/screens/Menu/MenuList.dart';
 import 'package:restaurant_management/Table%20Reservation/ResiveTable.dart';
 import 'package:restaurant_management/screens/Order/OrderScreen.dart';
 //import 'package:restaurant_management/Table Reservation/Reservation.dart';
 
 class HomeViewTab extends StatelessWidget {
-  
   const HomeViewTab({super.key});
 
   @override
@@ -42,7 +43,12 @@ class HomeViewTab extends StatelessWidget {
       onTap: () {
         switch (title) {
           case 'Our Menu':
-            {}
+            {
+              final navigator = Navigator.of(context);
+              navigator.push(
+                MaterialPageRoute(builder: (context) => const MenuList()),
+              );
+            }
             break;
           case 'Place Order':
             {
@@ -56,8 +62,10 @@ class HomeViewTab extends StatelessWidget {
           case 'Table Reservation':
             {
               final navigator = Navigator.of(context);
-              navigator.push(
-                  MaterialPageRoute(builder: (context) => const ResiveTable(id:'',)));
+              navigator.push(MaterialPageRoute(
+                  builder: (context) => const ResiveTable(
+                        id: '',
+                      )));
             }
             break;
           case 'Feedback':
