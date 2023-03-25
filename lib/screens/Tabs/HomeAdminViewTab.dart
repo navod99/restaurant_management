@@ -18,16 +18,16 @@ class HomeAdminViewTab extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               cardView('Our Menu', 'assets/images/chef.png', size, context),
-              cardView('Place Order', 'assets/images/order.png', size, context),
+              //cardView('Place Order', 'assets/images/order.png', size, context),
             ],
           ),
           const SizedBox(height: 48.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              cardView('Table Reservation', 'assets/images/table.png', size,
-                  context),
-              cardView('Feedback', 'assets/images/feedback.png', size, context),
+              //cardView('Table Reservation', 'assets/images/table.png', size,
+              //context),
+              //cardView('Feedback', 'assets/images/feedback.png', size, context),
             ],
           ),
         ],
