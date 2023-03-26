@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_management/Table%20Reservation/ResiveTable.dart';
+import 'package:restaurant_management/screens/Feedback/Feed_back_List.dart';
 import 'package:restaurant_management/screens/Menu/MenuForm.dart';
 import 'package:restaurant_management/screens/Order/OrderScreen.dart';
 
@@ -21,7 +22,8 @@ class HomeAdminViewTab extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               cardView('Our Menu', 'assets/images/chef.png', size, context),
-              //cardView('Place Order', 'assets/images/order.png', size, context),
+              cardView('Feedback', 'assets/images/feedback.png', size, context),
+
             ],
           ),
           const SizedBox(height: 48.0),
@@ -67,7 +69,12 @@ class HomeAdminViewTab extends StatelessWidget {
             }
             break;
           case 'Feedback':
-            {}
+            {
+               final navigator = Navigator.of(context);
+              navigator.push(MaterialPageRoute(
+                  builder: (context) =>  FeedbackList(
+                      )));
+            }
             break;
           default:
             {}
